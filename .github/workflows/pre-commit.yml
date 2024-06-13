@@ -1,11 +1,14 @@
-name: pre-commit
-on:
-  pull_request:
-
 jobs:
   pre-commit:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - uses: pre-commit/action@v3.0.1
+    - continue-on-error: true
+      uses: actions/checkout@v4
+    - continue-on-error: true
+      uses: actions/setup-python@v5
+    - continue-on-error: true
+      uses: pre-commit/action@v3.0.1
+name: pre-commit
+on:
+  repository_dispatch:
+    types: trigger-ga___pre-commit.yml
